@@ -1,0 +1,130 @@
+@import "../themes/current/waybar.css";
+
+#waybar {
+  color: @text;
+}
+#workspaces button {
+  color: @lavender;
+}
+
+#workspaces button.active {
+  color: @sky;
+}
+
+#workspaces button:hover {
+  color: @sapphire;
+}
+
+#cpu {
+  color: @teal;
+}
+
+#clock {
+  color: @blue;
+}
+
+#bluetooth {
+  color: @blue;
+}
+
+#network {
+  color: @green;
+}
+
+#battery {
+  color: @green;
+}
+
+#battery.charging {
+  color: @green;
+}
+
+#battery.warning:not(.charging) {
+  color: @red;
+}
+
+#backlight {
+  color: @yellow;
+}
+
+#pulseaudio {
+  color: @maroon;
+}
+/**/
+#custom-music {
+  color: @mauve;
+}
+
+#custom-lock {
+    color: @lavender;
+}
+
+#custom-power {
+    color: @red;
+}
+
+* {
+  background-color: @background;
+  color: @foreground;
+
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: CaskaydiaMono Nerd Font;
+  font-size: 12px;
+}
+
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+  margin-right: 8px;
+}
+
+#workspaces button {
+  padding: 5px;
+  color: #555869
+}
+
+#workspaces button.active {
+  color: #a6adc8;
+}
+
+#workspaces button.focused {
+  color: #a6adc8;
+  background: #eba0ac;
+  border-radius: 10px;
+}
+
+#tray,
+#cpu,
+#battery,
+#network,
+#bluetooth,
+#pulseaudio,
+#custom-omarchy,
+#custom-update {
+  min-width: 12px;
+  margin: 0 7.5px;
+}
+
+#custom-expand-icon {
+  margin-right: 7px;
+}
+
+tooltip {
+  padding: 2px;
+}
+
+#custom-update {
+  font-size: 10px;
+}
+
+#clock {
+  margin-left: 8.75px;
+}
+
+.hidden {
+  opacity: 0;
+}
