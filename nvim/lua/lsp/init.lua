@@ -1,0 +1,7 @@
+require('lsp.lua')
+require('lsp.emmet')
+require('lsp.python')
+require('lsp.svelte')
+require('lsp.typescript')
+require('lsp.utils')
+require('lsp.go')

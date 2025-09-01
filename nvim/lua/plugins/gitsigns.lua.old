@@ -1,0 +1,12 @@
+-- return {
+--   'lewis6991/gitsigns.nvim',
+--   opts = {
+--     on_attach = function(buffer)
+--       local gs = package.loaded.gitsigns
+--         vim.keymap.set('n', '<leader>gb', gs.blame_line({ full = false}), { buffer = buffer, desc = 'Blame Line'})
+--     end,
+--     preview_config = {
+--       border = 'single'
+--     }
+--   }
+-- }
