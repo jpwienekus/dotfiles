@@ -1,3 +1,11 @@
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+
+
 ---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>
 local progress = vim.defaulttable()
 vim.api.nvim_create_autocmd("LspProgress", {
@@ -5,7 +13,7 @@ vim.api.nvim_create_autocmd("LspProgress", {
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     local value = ev.data.params
-    .value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
+        .value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
     if not client or type(value) ~= "table" then
       return
     end
@@ -40,5 +48,43 @@ vim.api.nvim_create_autocmd("LspProgress", {
             or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
       end,
     })
+  end,
+})
+
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  once = true,
+  callback = function()
+    vim.defer_fn(function()
+      vim.system(
+        { "curl", "-s", "https://api.github.com/repos/neovim/neovim/releases/latest" },
+        { text = true },
+        function(result)
+          if result.code ~= 0 then
+            return nil
+          end
+
+          local ok, json = pcall(vim.json.decode, result.stdout)
+
+          if not (ok and json and json.tag_name) then
+            return
+          end
+
+          vim.schedule(function()
+            local version = vim.version()
+            local current_version = string.format("v%d.%d.%d", version.major, version.minor, version.patch)
+            local latest_version = json.tag_name
+
+            if latest_version ~= current_version then
+              local message = string.format("New Neovim version available: %s (current: %s)", latest_version,
+                current_version)
+              vim.notify(message, vim.log.levels.INFO, {
+                title = "Update available",
+              })
+            end
+          end)
+        end
+      )
+    end, 1000)
   end,
 })

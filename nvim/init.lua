@@ -1,7 +1,10 @@
-require('settings')
-require('keymaps')
+-- require('settings')
+-- require('keymaps')
+require('core.options')
+require('core.keymaps')
+require('core.autocmds')
+
 require('lsp')
-require('utils.update_notifier')
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 
