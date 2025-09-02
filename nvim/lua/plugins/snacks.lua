@@ -15,7 +15,7 @@ return {
         file = {
           truncate = 60,
         }
-      }
+      },
     },
     notifier = {
       enabled = true,
@@ -23,8 +23,8 @@ return {
     }
   },
   keys = {
-    { '<leader>sf', function() Snacks.picker.files() end, desc = 'Find Files'},
-    { '<leader>sg', function() Snacks.picker.grep() end, desc = 'Grep'},
-    { '<leader>n', function() Snacks.picker.notifications() end, desc = 'Notification History'},
+    { '<leader>sf', function() Snacks.picker.files({hidden = true}) end,         desc = 'Find Files' },
+    { '<leader>sg', function() Snacks.picker.grep({hidden = true}) end,          desc = 'Grep' },
+    { '<leader>n',  function() Snacks.picker.notifications() end, desc = 'Notification History' },
   }
 }
