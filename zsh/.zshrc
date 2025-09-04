@@ -16,3 +16,7 @@ compinit
 eval "$(starship init zsh)"
 
 source $ZDOTDIR/aliases
+
+if uwsm check may-start; then
+    exec uwsm start hyprland-uwsm.desktop
+fi
